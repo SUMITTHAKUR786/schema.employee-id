@@ -1,0 +1,107 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type EmployeDtata {
+  EmployeID: String!
+  EmployeNumber: AWSPhone!
+}
+
+type EmployeDtataConnection {
+  items: [EmployeDtata]
+  nextToken: String
+}
+
+type Mutation {
+  createEmployeDtata(input: CreateEmployeDtataInput!): EmployeDtata
+  deleteEmployeDtata(input: DeleteEmployeDtataInput!): EmployeDtata
+  updateEmployeDtata(input: UpdateEmployeDtataInput!): EmployeDtata
+}
+
+type Query {
+  getEmployeDtata(EmployeID: String!, EmployeNumber: AWSPhone!): EmployeDtata
+  listEmployeDtatas(filter: TableEmployeDtataFilterInput, limit: Int, nextToken: String): EmployeDtataConnection
+}
+
+type Subscription {
+  onCreateEmployeDtata(EmployeID: String, EmployeNumber: AWSPhone): EmployeDtata @aws_subscribe(mutations : ["createEmployeDtata"])
+  onDeleteEmployeDtata(EmployeID: String, EmployeNumber: AWSPhone): EmployeDtata @aws_subscribe(mutations : ["deleteEmployeDtata"])
+  onUpdateEmployeDtata(EmployeID: String, EmployeNumber: AWSPhone): EmployeDtata @aws_subscribe(mutations : ["updateEmployeDtata"])
+}
+
+input CreateEmployeDtataInput {
+  EmployeID: String!
+  EmployeNumber: AWSPhone!
+}
+
+input DeleteEmployeDtataInput {
+  EmployeID: String!
+  EmployeNumber: AWSPhone!
+}
+
+input TableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input TableEmployeDtataFilterInput {
+  EmployeID: TableStringFilterInput
+  EmployeNumber: TableStringFilterInput
+}
+
+input TableFloatFilterInput {
+  between: [Float]
+  contains: Float
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+  notContains: Float
+}
+
+input TableIDFilterInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+}
+
+input TableIntFilterInput {
+  between: [Int]
+  contains: Int
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+  notContains: Int
+}
+
+input TableStringFilterInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+}
+
+input UpdateEmployeDtataInput {
+  EmployeID: String!
+  EmployeNumber: AWSPhone!
+}
